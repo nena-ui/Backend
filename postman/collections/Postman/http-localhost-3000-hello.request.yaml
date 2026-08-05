@@ -1,0 +1,17 @@
+$kind: http-request
+name: http://localhost:3000/hello
+description: ""
+url: http://localhost:3000/hello
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"id\" : 1,\r
+
+    \    \"name\" : \"Nena\",\r
+
+    \    \"age\" : 20\r
+
+    }"
+order: 2403877781431569
