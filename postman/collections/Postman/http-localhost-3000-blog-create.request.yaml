@@ -1,0 +1,23 @@
+$kind: http-request
+name: http://localhost:3000/blog/create
+description: ""
+url: http://localhost:3000/blog/create
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \     \"title\" : \"Second Blog\",\r
+
+    \    \"description\" : \"first blog description\",\r
+
+    \    \"category\" : \"Sports\",\r
+
+    \    \"likes\" : 10,\r
+
+    \    \"status\" : true,\r
+
+    \    \"author\" : \"Riwaj Neupane\"\r
+
+    }"
+order: 3175145562861510

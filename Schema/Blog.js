@@ -13,15 +13,14 @@ const blogSchema = new Schema({
     status : Boolean,
     author : String
 
-});
+
+}
+,{timestamps :true }
+);
 
 const Blog = mongoose.model('Blog', blogSchema);
 
 export default Blog
 
-// title
-// description
-// status 
-// .js
 
 

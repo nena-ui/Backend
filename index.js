@@ -2,10 +2,14 @@ import express from 'express'
 import mongoose from 'mongoose'
 import dns from "dns"
 import Blog from './Schema/Blog.js'
+import Category from './Schema/category.js'
+import dotenv from "dotenv"
 
 const app = express()
 
 app.use(express.json())
+
+dotenv.config()
 
 dns.setServers(["8.8.8.8","8.8.4.4"]);
 
@@ -13,10 +17,13 @@ dns.setServers(["8.8.8.8","8.8.4.4"]);
 // const mongoose = require('mongoose');
 // mongoose.connect('mongodb://127.0.0.1:27017/test');
 
+
+
+
 const connectDB = async()=> {
  try {
    console.log("connecting to database.....")
- const connection = await mongoose.connect('mongodb+srv://dangolnena12_db_user:JuAlMaOhweJsuNJe@backend0-cluster.hhd16p0.mongodb.net/?appName=backend0-cluster')
+ const connection = await mongoose.connect(process.env.DB_URL)
 console.log("successfully connected to database")
  }
  catch (error) {
@@ -1298,3 +1305,8 @@ app.post("/blog/create",async(req, res) => {
   const newBlog = await Blog.create(req.body)
   res.json(newBlog)
   })
+
+app.post("/category/create",async(req, res) =>{
+  const newCategory= await Category.create(req.body)
+  res.json(newCategory)
+})
