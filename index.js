@@ -7,9 +7,12 @@ import dotenv from "dotenv"
 
 const app = express()
 
+
 app.use(express.json())
 
+
 dotenv.config()
+
 
 dns.setServers(["8.8.8.8","8.8.4.4"]);
 
@@ -18,12 +21,12 @@ dns.setServers(["8.8.8.8","8.8.4.4"]);
 // mongoose.connect('mongodb://127.0.0.1:27017/test');
 
 
-
-
 const connectDB = async()=> {
- try {
+//error handling method(block)
+ try {   
    console.log("connecting to database.....")
- const connection = await mongoose.connect(process.env.DB_URL)
+
+const connection = await mongoose.connect(process.env.DB_URL)   //for security of your data
 console.log("successfully connected to database")
  }
  catch (error) {
@@ -35,6 +38,7 @@ console.log("successfully connected to database")
 }
 
 connectDB()
+
 
 const products =[
 {
@@ -1255,16 +1259,17 @@ app.get('/', (req, res) => {
   res.send('Hello World,I am Nena Dangol')
 })
 
+
 app.post('/hello', (req, res) => {
   console.log(req.body)
-
   res.json(req.body.name)
-
 })
+
 
 app.get('/hello/2', (req, res) => {
   res.send('You can add path')
 })
+
 
 app.get('/backend', (req, res) => {
   res.send('Hello Backend!!!!!')
@@ -1272,17 +1277,14 @@ app.get('/backend', (req, res) => {
 
 
 //params
-// app.get('/products', (req, res) => {
-//   res.send('This is my product list page')
-// })
-
 // app.get('/products/:id', (req, res) => {
 //   console.log(req.params.id)
 //   res.send(`This is product page of id ${req.params.id}`)
 // })
 
-//filter
 
+
+//filter
 app.get('/products', (req, res) => {
   res.json(products)
 })
@@ -1296,17 +1298,77 @@ app.get('/products/:id', (req, res) => {
 })
 
 
-
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000')
 })
 
+
+//Blog
 app.post("/blog/create",async(req, res) => {
   const newBlog = await Blog.create(req.body)
   res.json(newBlog)
   })
 
-app.post("/category/create",async(req, res) =>{
-  const newCategory= await Category.create(req.body)
-  res.json(newCategory)
+
+app.get("/blog/getAll",async(req, res) =>{
+  const allBlogs= await Blog.find()
+  res.status(200).json(allBlogs)
 })
+
+app.delete("/blog/delete/:id", async (req, res) => {
+  try {
+    const idToDelete = req.params.id;
+
+    const existingBlog = await Blog.findOne({ _id: idToDelete });
+    console.log(existingBlog);
+
+    if (!existingBlog) {
+      return res.status(404).json({
+        message: "Blog with the id not found",
+      });
+    }
+
+    const allBlogs = await Blog.findByIdAndDelete(idToDelete);
+    res.status(200).json({
+      message: "Blog Deleted Successfully",
+    });
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+
+//Category
+app.post("/category/create",async(req, res) => {
+  const newCategory = await Category.create(req.body) //create
+  res.json(newCategory)
+  })
+
+
+app.get("/category/getAll",async(req, res) =>{
+  const allCategory= await Category.find() //find
+  res.status(200).json(allCategory)
+})
+
+
+app.delete("/category/delete/:id", async (req, res) => {
+  try {
+    const idToDelete = req.params.id;
+
+    const existingCategory = await Category.findOne({ _id: idToDelete });
+    console.log(existingCategory);
+
+    if (!existingCategory) {
+      return res.status(404).json({
+        message: "Category with the id not found",
+      });
+    }
+
+    const allCategory = await Category.findByIdAndDelete(idToDelete);
+    res.status(200).json({
+      message: "Category has deleted successfully",
+    });
+  } catch (err) {
+    console.error(err);
+  }
+});

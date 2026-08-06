@@ -1,0 +1,6 @@
+$kind: http-request
+name: http://localhost:3000/blog/delete/6a72d4fae590b0451088485e
+description: ""
+url: http://localhost:3000/blog/delete/6a72d4fae590b0451088485e
+method: DELETE
+order: 4456834797826362

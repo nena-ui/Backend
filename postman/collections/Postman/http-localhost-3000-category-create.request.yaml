@@ -1,0 +1,17 @@
+$kind: http-request
+name: http://localhost:3000/category/create
+description: ""
+url: http://localhost:3000/category/create
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \     \"title\" : \"Second Blog\",\r
+
+    \    \"description\" : \"first blog description\",\r
+
+    \    \"status\" : true\r
+
+    }"
+order: 4428266412132682

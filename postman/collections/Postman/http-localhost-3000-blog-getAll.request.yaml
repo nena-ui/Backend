@@ -1,0 +1,6 @@
+$kind: http-request
+name: http://localhost:3000/blog/getAll
+description: ""
+url: http://localhost:3000/blog/getAll
+method: GET
+order: 3516389773517884
