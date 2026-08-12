@@ -2,25 +2,39 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const blogSchema = new Schema({
-    // String is shorthand for {type: String}
+
     title : {
         type: String,
         required : true
     },
+
     description : String,
-    category : String,
-    likes : Number,
-    status : Boolean,
-    author : String
+
+    category : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref : "Category"
+    },
+
+    likes : {
+        type : Number,
+        default : 0,
+    },
 
 
-}
-,{timestamps :true }
+    status : {
+        type : Boolean,
+        default : true,
+    },
+
+    author : String,
+
+    image : String,
+} , 
+
+{ timestamps: true }
+
 );
 
-const Blog = mongoose.model('Blog', blogSchema);
+const Blog = mongoose.model("Blog", blogSchema);
 
-export default Blog
-
-
-
+export default Blog;

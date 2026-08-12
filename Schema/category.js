@@ -1,22 +1,20 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-const categorySchema = new Schema({
+const categorySchema = new Schema(
+    {
     title : {
         type: String,
         required : true
     },
+
     description : String,
-    status : String
-}
-,{
-    timestamps : true
-});
 
-const Category = mongoose.model('Category', categorySchema);
+    status : Boolean,
+} ,
+ { timestamps : true } 
+);
 
-export default Category
+const Category = mongoose.model("Category", categorySchema);
 
-//req.params only one id
-//category
-//status
+export default Category;

@@ -1,0 +1,6 @@
+$kind: http-request
+name: http://localhost:3000/category/delete/6a741f8519f872f0694a13e5
+description: ""
+url: http://localhost:3000/category/delete/6a741f8519f872f0694a13e5
+method: DELETE
+order: 4500153170139717

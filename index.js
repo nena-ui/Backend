@@ -4,11 +4,22 @@ import dns from "dns"
 import Blog from './Schema/Blog.js'
 import Category from './Schema/category.js'
 import dotenv from "dotenv"
+import cors from "cors"
+import { connectDB } from './config/db.js'
+import { createBlog, UpdateBlog, getAllBlog } from './Controller/blogController.js'
+import blogRoutes from "./routes/blogRoutes.js"
+import { createCategory, getCategory } from './Controller/categoryController.js'
+import categoryRoutes from "./routes/categoryRoutes.js"
+import userRoutes from "./routes/userRoutes.js"
+
 
 const app = express()
 
 
 app.use(express.json())
+
+
+app.use(cors())
 
 
 dotenv.config()
@@ -21,22 +32,7 @@ dns.setServers(["8.8.8.8","8.8.4.4"]);
 // mongoose.connect('mongodb://127.0.0.1:27017/test');
 
 
-const connectDB = async()=> {
-//error handling method(block)
- try {   
-   console.log("connecting to database.....")
-
-const connection = await mongoose.connect(process.env.DB_URL)   //for security of your data
-console.log("successfully connected to database")
- }
- catch (error) {
-  console.error (error)
- }
- finally {
-  console.log("final statement")
- }
-}
-
+//Database
 connectDB()
 
 
@@ -1283,8 +1279,7 @@ app.get('/backend', (req, res) => {
 // })
 
 
-
-//filter
+//Filter
 app.get('/products', (req, res) => {
   res.json(products)
 })
@@ -1298,22 +1293,35 @@ app.get('/products/:id', (req, res) => {
 })
 
 
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000')
-})
-
-
 //Blog
-app.post("/blog/create",async(req, res) => {
-  const newBlog = await Blog.create(req.body)
-  res.json(newBlog)
-  })
+
+//Routes,Controllers
+app.use("/blog", blogRoutes)
+app.use("/category",categoryRoutes)
+app.use("/user",userRoutes)
 
 
-app.get("/blog/getAll",async(req, res) =>{
-  const allBlogs= await Blog.find()
-  res.status(200).json(allBlogs)
-})
+
+app.get("/blog/getById/:id", async (req, res) => {
+try{
+
+  const {id} = req.params
+    const singleBlog = await Blog.findById(id)
+
+  if(!singleBlog) {
+    return res.status(404).json({
+      message : "Blog not found"
+    })
+  }
+
+  res.status(200).json(singleBlog);
+}
+catch (err) {
+  console.error(err)
+  
+}
+});
+
 
 app.delete("/blog/delete/:id", async (req, res) => {
   try {
@@ -1338,12 +1346,7 @@ app.delete("/blog/delete/:id", async (req, res) => {
 });
 
 
-//Category
-app.post("/category/create",async(req, res) => {
-  const newCategory = await Category.create(req.body) //create
-  res.json(newCategory)
-  })
-
+//Category (Create,Update,Get,Delete)
 
 app.get("/category/getAll",async(req, res) =>{
   const allCategory= await Category.find() //find
@@ -1372,3 +1375,10 @@ app.delete("/category/delete/:id", async (req, res) => {
     console.error(err);
   }
 });
+
+
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000')
+})
+
+

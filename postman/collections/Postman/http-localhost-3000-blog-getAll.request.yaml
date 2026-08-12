@@ -3,4 +3,37 @@ name: http://localhost:3000/blog/getAll
 description: ""
 url: http://localhost:3000/blog/getAll
 method: GET
+body:
+  type: json
+  content: "[\r
+
+    \  {\r
+
+    \    \"_id\": \"6a7b37fd...\",\r
+
+    \    \"title\": \"My first category\",\r
+
+    \    \"description\": \"first blog description\",\r
+
+    \    \"category\": {\r
+
+    \      \"_id\": \"6a72d758...\",\r
+
+    \      \"name\": \"Sports\",\r
+
+    \      \"description\": \"first Category description\",\r
+
+    \      \"status\": true\r
+
+    \    },\r
+
+    \    \"likes\": 10,\r
+
+    \    \"status\": true,\r
+
+    \    \"author\": \"Nena Dangol\"\r
+
+    \  }\r
+
+    ]"
 order: 3516389773517884

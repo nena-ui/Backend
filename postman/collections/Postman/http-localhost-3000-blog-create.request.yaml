@@ -7,17 +7,17 @@ body:
   type: json
   content: "{\r
 
-    \     \"title\" : \"Second Blog\",\r
+    \    \"title\": \"My first category\",\r
 
-    \    \"description\" : \"first blog description\",\r
+    \    \"description\": \"first blog description\",\r
 
-    \    \"category\" : \"Sports\",\r
+    \    \"category\": \"6a742655e29a3a5cae6bd749\",\r
 
-    \    \"likes\" : 10,\r
+    \    \"likes\": 10,\r
 
-    \    \"status\" : true,\r
+    \    \"status\": true,\r
 
-    \    \"author\" : \"Riwaj Neupane\"\r
+    \    \"author\": \"Nena Dangol\"\r
 
     }"
 order: 3175145562861510
