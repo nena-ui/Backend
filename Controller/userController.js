@@ -5,14 +5,14 @@ import bcrypt from "bcrypt"
 //Create
 export const createUser =  async (req, res) => {
 try {
-    const { password, email } = req.body
+    const { password } = req.body
 
-    //  const existingUser = await User.create({email})
+    //  const existingUser = await User.create({email:email})
     //     res.json(existingUser)
     
-     if(!existingUser) {
-            return res.status(404).send("The user already exists")
-        }
+    //  if(!existingUser) {
+    //         return res.status(404).send("The user already exists")
+    //     }
     
 
     const hashedpassword = await bcrypt.hash(password,10)
@@ -72,6 +72,6 @@ export const login = async (req, res) => {
         }
 
         return res.json ({
-            message :"Logged in successfuly"
+            message :"Logged in successfully"
         })
 }

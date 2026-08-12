@@ -1,0 +1,15 @@
+$kind: http-request
+name: //localhost:3000/user/login
+description: ""
+url: //localhost:3000/user/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"email\": \"email@gamil.com\",\r
+
+    \    \"password\": \"$2b$10$rxHgxCvLjYakgWS7rHXUsOZrbZ6HtDKHfMpPylU/haBR33alx9bf.\"\r
+
+    }"
+order: 4502211006266788

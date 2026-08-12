@@ -1,0 +1,19 @@
+$kind: http-request
+name: //localhost:3000/user/create
+description: ""
+url: //localhost:3000/user/create
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"fullName\" : \"Sunena Dangol\",\r
+
+    \    \"email\" : \"test123@gmail.com\",\r
+
+    \    \"password\" : \"xyz123\"\r
+
+    \r
+
+    }"
+order: 4503175592987063
