@@ -7,13 +7,11 @@ body:
   type: json
   content: "{\r
 
-    \    \"fullName\" : \"Sunena Dangol\",\r
+    \    \"fullName\" : \"Haziran Arcas\",\r
 
-    \    \"email\" : \"test123@gmail.com\",\r
+    \    \"email\" : \"test@gmail.com\",\r
 
-    \    \"password\" : \"xyz123\"\r
-
-    \r
+    \    \"password\" : \"0000\"\r
 
     }"
 order: 4503175592987063

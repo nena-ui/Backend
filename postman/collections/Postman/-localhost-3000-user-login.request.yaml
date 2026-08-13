@@ -7,9 +7,11 @@ body:
   type: json
   content: "{\r
 
-    \    \"email\": \"email@gamil.com\",\r
+    \    \"email\" : \"test@gmail.com\",\r
 
-    \    \"password\": \"$2b$10$rxHgxCvLjYakgWS7rHXUsOZrbZ6HtDKHfMpPylU/haBR33alx9bf.\"\r
+    \    \"password\" : \"0000\"\r
 
-    }"
+    }\r\n"
+auth:
+  type: noauth
 order: 4502211006266788

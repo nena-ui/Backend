@@ -1,19 +1,16 @@
 import User from "../Schema/User.js";
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
+
+
+ export const JWT_SECRET = "mern"
 
 
 //Create
 export const createUser =  async (req, res) => {
 try {
-    const { password } = req.body
-
-    //  const existingUser = await User.create({email:email})
-    //     res.json(existingUser)
-    
-    //  if(!existingUser) {
-    //         return res.status(404).send("The user already exists")
-    //     }
-    
+    const { password} = req.body
+   
 
     const hashedpassword = await bcrypt.hash(password,10)
 
@@ -27,8 +24,9 @@ try {
   res.json(newUser);
 }
 catch(err) {
+  console.log(err);
   return res.status(500).json ({
-    message : err.message
+    message : "Error message"
   })
 }
 }
@@ -56,10 +54,10 @@ export const UpdateUser = async (req, res) => {
 
 //Login
 export const login = async (req, res) => {
-
+      try{
         const { email, password } = req.body
 
-        const existingUser = await User.findOne({email})
+        const existingUser = await User.findOne({ email })
 
         if(!existingUser) {
             return res.status(404).send("User not found")
@@ -71,7 +69,18 @@ export const login = async (req, res) => {
             return res.status(404).send("Email or Password is incorrect")
         }
 
+        //JWT
+        const token = jwt.sign({
+        id : existingUser.id,
+        email : existingUser.email
+        },JWT_SECRET, {expiresIn : "1d"})
+
         return res.json ({
-            message :"Logged in successfully"
+            message :"Logged in successfully",
+            token : token
         })
+} catch (err) {
+  console.log(err);
+  res.status(500).send("Server error");
 }
+};

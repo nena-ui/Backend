@@ -36,4 +36,8 @@ body:
     \  }\r
 
     ]"
+auth:
+  type: bearer
+  credentials:
+    token: "{{supabase_service_role_api_key_1ajs}}"
 order: 3516389773517884

@@ -1,2 +1,6 @@
 $kind: collection
 name: Postman
+variables:
+  - key: supabase_service_role_api_key_1ajs
+    secret: true
+    disabled: false
