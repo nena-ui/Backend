@@ -1,9 +1,13 @@
 import User from "../Schema/User.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import dotenv from "dotenv";
 
 
- export const JWT_SECRET = "mern"
+
+dotenv.config();//load .env
+
+export const JWT_SECRET = process.env.JWT_SECRET;
 
 
 //Create
@@ -35,8 +39,8 @@ catch(err) {
 //Get
 export const getAllUser= async (req, res) => {
   try {
-    const User = await User.find()
-    res.status(200).json(User)
+    const users = await User.find()
+    res.status(200).json(users)
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
@@ -70,10 +74,14 @@ export const login = async (req, res) => {
         }
 
         //JWT
-        const token = jwt.sign({
+        const token = jwt.sign(
+        {
         id : existingUser.id,
         email : existingUser.email
-        },JWT_SECRET, {expiresIn : "1d"})
+        },
+        JWT_SECRET, 
+        {expiresIn : "1d"}
+        )
 
         return res.json ({
             message :"Logged in successfully",
