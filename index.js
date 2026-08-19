@@ -11,6 +11,7 @@ import blogRoutes from "./routes/blogRoutes.js"
 import { createCategory, getCategory } from './Controller/categoryController.js'
 import categoryRoutes from "./routes/categoryRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
+import todoRoutes from "./routes/todoRoutes.js"
 
 
 const app = express()
@@ -1299,6 +1300,7 @@ app.get('/products/:id', (req, res) => {
 app.use("/blog", blogRoutes)
 app.use("/category",categoryRoutes)
 app.use("/user",userRoutes)
+app.use("/todo",todoRoutes)
 
 
 

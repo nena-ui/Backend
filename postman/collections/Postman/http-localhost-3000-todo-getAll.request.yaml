@@ -1,0 +1,17 @@
+$kind: http-request
+name: http://localhost:3000/todo/getAll
+description: ""
+url: http://localhost:3000/todo/getAll
+method: GET
+body:
+  type: json
+  content: "{\r
+
+    \    \"title\" : \"Austria\",\r
+
+    \    \"description\" : \"Vienna\",\r
+
+    \    \"isCompleted\" : false\r
+
+    }"
+order: 4503579919827060
